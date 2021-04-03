@@ -22,6 +22,7 @@ void string_to_lower(String* str);
 
 #endif // CONTAINER_STRING_H
 
+// #define STRING_IMPL
 #ifdef STRING_IMPL
 
 #ifndef STRING_IMPLEMENTED
@@ -157,7 +158,7 @@ void string_resize(String* str, size_t new_len)
     else      s = (String_Internal*) malloc(byte_size);
 
     hd_assert(s != NULL);
-    s->length = new_len;
+    s->length = new_len - 1;
     *str = s->buffer;
 }
 
@@ -186,10 +187,9 @@ void string_append(String* dest, char* other)
     else
     {
         size_t prev_len = string_length(*dest);
-        string_resize(dest, prev_len + strlen(other));
-        String_Internal* s = ((String_Internal*)dest - 1);
-        s->length = prev_len + strlen(other);
-        strcpy(*dest + prev_len - 1, other);
+        string_resize(dest, prev_len + strlen(other) + 1);
+        String_Internal* s = string_data(*dest);
+        strcat(*dest, other);
     }
 }
 
