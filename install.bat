@@ -1,6 +1,6 @@
 @echo off
 
-set outdir=C:\tools\
+set outdir=C:\hd-tools\
 
 if not exist %outdir% md %outdir%
 
