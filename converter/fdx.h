@@ -2,4 +2,4 @@
 
 #include "fountain.h"
 
-void generate_fdx(Parser* parser);
+void generate_fdx(Parser* parser, String filepath);

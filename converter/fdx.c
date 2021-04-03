@@ -71,7 +71,7 @@ void append_escaped(String* string, String other)
     string_append(string, other + last_idx);
 }
 
-void generate_fdx(Parser* parser)
+void generate_fdx(Parser* parser, String filepath)
 {
     String screenplay_content = NULL;
     da_foreach(Elem, elem, parser->elements)
@@ -121,7 +121,7 @@ void generate_fdx(Parser* parser)
     String smarttype_transitions = NULL;
     FILL_SMARTTYPE_SECTION(smarttype_transitions, transitions, "Transition", "Transitions");
 
-    FILE* file = fopen("test-output.fdx", "wb");
+    FILE* file = fopen(filepath, "wb");
     fprintf(file, file_fmt,
             screenplay_content,
             smarttype_characters,
