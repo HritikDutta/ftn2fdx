@@ -32,7 +32,7 @@ int main(int argc, char* argv[])
 
     if (!is_fountain(argv[1]))
     {
-        printf("What file is this? %s", argv[1]);
+        printf("What file is this? %s\n", argv[1]);
         return 1;
     }
 
@@ -45,4 +45,6 @@ int main(int argc, char* argv[])
     Parser parser = parser_make(load_file(argv[1]));
     parser_parse(&parser);
     generate_fdx(&parser, outfile);
+
+    printf("%s\n", outfile);
 }
