@@ -252,12 +252,14 @@ static void parse_title_page(Parser* parser)
                 consume_ws(parser);
                 String line = get_line(parser);
                 string_append(&value, line);
+                consume_line(parser);
             }
         }
         else
         {
             consume_ws(parser);
             value = get_line(parser);
+            consume_line(parser);
         }
 
         dict_put(parser->title_page_details, key, value);
