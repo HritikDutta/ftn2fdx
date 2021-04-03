@@ -2,6 +2,7 @@
 
 #include "converter/filestuff.h"
 #include "converter/fountain.h"
+#include "converter/fdx.h"
 
 #define DEBUG
 
@@ -21,5 +22,9 @@ int main(int argc, char* argv[])
 
     Parser parser = parser_make(load_file(argv[1]));
     parser_parse(&parser);
-    parser_free(&parser);
+
+    generate_fdx(&parser);
+
+    // parser_free(&parser);
+    // string_free(&content);
 }
