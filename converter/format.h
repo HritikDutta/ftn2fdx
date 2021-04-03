@@ -7,6 +7,18 @@ char elem_fmt_start[] =
 char elem_fmt_end[] ="</Text>\n"
 "    </Paragraph>\n";
 
+char title_page_elem_fmt_start[] =
+"      <Paragraph Alignment=\"%s\">\n"
+"        <Text>";
+
+char title_page_elem_fmt_end[] ="</Text>\n"
+"      </Paragraph>\n";
+
+char title_page_empty_elem[] =
+"      <Paragraph>\n"
+"        <Text />\n"
+"      </Paragraph>\n";
+
 char default_characters[] =
 "    <Characters />\n";
 
@@ -67,7 +79,8 @@ char file_fmt[] =
 "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>\n"
 "<FinalDraft DocumentType=\"Script\" Template=\"No\" Version=\"4\">\n"
 "\n"
-"  <Content>\n%s</Content>\n"
+"  <Content>\n%s"
+"  </Content>\n"
 "\n"
 "  <ElementSettings Type=\"General\">\n"
 "    <FontSpec AdornmentStyle=\"0\" Background=\"#FFFFFFFFFFFF\" Color=\"#000000000000\" Font=\"Courier Final Draft\" RevisionID=\"0\" Size=\"12\" Style=\"\"/>\n"
@@ -136,16 +149,13 @@ char file_fmt[] =
 "  </ElementSettings>\n"
 "\n"
 "  <TitlePage>\n"
-"    <Content>\n"
-"      <Paragraph>\n"
-"        <Text/>\n"
-"      </Paragraph>\n"
+"    <Content>\n%s"
 "    </Content>\n"
 "  </TitlePage>\n"
 "\n"
 "  <UnanchoredScriptNotes/>\n"
 "\n"
-"  <SmartType>\n%s%s%s%s%s%s</SmartType>\n"
+"  <SmartType>\n%s%s%s%s%s</SmartType>\n"
 "\n"
 "  <MoresAndContinueds>\n"
 "    <FontSpec AdornmentStyle=\"0\" Background=\"#FFFFFFFFFFFF\" Color=\"#000000000000\" Font=\"Courier Final Draft\" RevisionID=\"0\" Size=\"12\" Style=\"\"/>\n"
