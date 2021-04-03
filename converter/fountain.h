@@ -5,7 +5,8 @@
 #include "containers/dictionary.h"
 
 // @Todo: Figure out how Script notes work in Final Draft
-// @Todo: Boneyards can only work if lines start with /*. Maybe make it more general?
+// @Todo: Boneyards can only work if lines start with /*.
+//        Maybe make it if it's in the same line too?
 typedef enum _Elem_Type
 {
     ELEM_SCENE_HEADING,
@@ -32,6 +33,12 @@ typedef struct _Parser
     Dict(String) title_page_details;
     DArray(Elem) elements;
 
+    DArray(String) characters;
+    DArray(String) scene_intros;
+    DArray(String) locations;
+    DArray(String) times_of_day;
+    DArray(String) transitions;
+
     int prev_line_empty;
     int next_line_empty;
     int line_all_caps;
@@ -41,4 +48,4 @@ Parser parser_make(String content);
 void parser_free(Parser* parser);
 void parser_parse(Parser* parser);
 
-char* elem_type(Elem e);
+char* elem_type_as_string(Elem e);

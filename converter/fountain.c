@@ -15,6 +15,13 @@ Parser parser_make(String content)
     p.content = content;
     dict_make(p.title_page_details);
     da_make(p.elements);
+
+    da_make(p.characters);
+    da_make(p.scene_intros);
+    da_make(p.locations);
+    da_make(p.times_of_day);
+    da_make(p.transitions);
+
     return p;
 }
 
@@ -45,6 +52,14 @@ void parser_free(Parser* parser)
     da_free(parser->elements);
 }
 
+static int is_ws(char ch)
+{
+    return ch == ' '  ||
+           ch == '\t' ||
+           ch == '\r' ||
+           ch == '\n';
+}
+
 static char peek(Parser* parser, int offset)
 {
     if (parser->idx + offset >= string_length(parser->content))
@@ -71,10 +86,7 @@ static void consume_n(Parser* parser, int n)
 
 static void consume_ws(Parser* parser)
 {
-    while (peek(parser, 0) == ' '  ||
-           peek(parser, 0) == '\t' ||
-           peek(parser, 0) == '\r' ||
-           peek(parser, 0) == '\n')
+    while (is_ws(peek(parser, 0)))
         consume(parser);
 }
 
@@ -279,10 +291,7 @@ static int line_wrapped_with(Parser* parser, char left, char right)
             char ch = peek(parser, -offset);
             offset++;
 
-            if (ch == ' '  ||
-                ch == '\t' ||
-                ch == '\r' ||
-                ch == '\n')
+            if (is_ws(ch))
                 continue;
             
             parser->idx = prev_index;
@@ -412,6 +421,79 @@ static int is_centered_text(Parser* parser)
     return line_wrapped_with(parser, '>', '<');
 }
 
+static void push_unique_string_or_free(DArray(String)* list, String* str)
+{
+    int size = da_size((*list));
+    for (int i = 0; i < size; i++)
+    {
+        if (string_cmp((*list)[i], *str))
+        {
+            string_free(str);
+            return;
+        }
+    }
+
+    da_push_back((*list), *str);
+}
+
+static void push_character_name(Parser* parser, String line)
+{
+    int last_idx = 0;
+    for (int i = 0; line[i]; i++)
+    {
+        if (line[i] == '(')
+            break;
+
+        if (!is_ws(line[i]))
+            last_idx = i;
+    }
+
+    String name = string_make_till_n(line, last_idx + 1);
+    push_unique_string_or_free(&parser->characters, &name);
+}
+
+static void push_scene_heading_details(Parser* parser, String line)
+{
+    int start_idx = 0;
+    while (!is_ws(line[start_idx]))
+        start_idx++;
+
+    // There is a scene intro
+    if (line[start_idx] != '.')
+    {
+        String scene_intro = string_make_till_n(line, start_idx + 1);
+        push_unique_string_or_free(&parser->scene_intros, &scene_intro);
+    }
+    else
+        start_idx = 0;
+
+    while (is_ws(line[start_idx]))
+        start_idx++;
+
+    int i, last_idx = 0;
+    for (i = 0; line[i]; i++)
+    {
+        if (line[i] == '-')
+            break;
+
+        if (!is_ws(line[i]))
+            last_idx = i;
+    }
+
+    String location = string_make_till_n(line + start_idx , last_idx - start_idx + 1);
+    push_unique_string_or_free(&parser->locations, &location);
+
+    if (line[i])
+    {
+        start_idx = i + 1;
+        while (is_ws(line[start_idx]))
+            start_idx++;
+
+        String time_of_day = string_make(line + start_idx);
+        push_unique_string_or_free(&parser->times_of_day, &time_of_day);
+    }
+}
+
 static void parse_screenplay(Parser* parser)
 {
     int len = string_length(parser->content);
@@ -506,6 +588,10 @@ static void parse_screenplay(Parser* parser)
             da_push_back(parser->elements, e);
             consume_line(parser);   // Consume the empty line after this
             parser->prev_line_empty = 0;
+
+            String transition = NULL;
+            string_copy(&transition, e.data);
+            push_unique_string_or_free(&parser->transitions, &transition);
             continue;
         }
 
@@ -517,6 +603,8 @@ static void parse_screenplay(Parser* parser)
             da_push_back(parser->elements, e);
             parser->prev_line_empty = 0;
             consume_line(parser);   // Consume the empty line after this
+            
+            push_scene_heading_details(parser, e.data);
             continue;
         }
 
@@ -527,6 +615,8 @@ static void parse_screenplay(Parser* parser)
             e.data = get_line(parser);
             da_push_back(parser->elements, e);
             parser->prev_line_empty = 0;
+         
+            push_character_name(parser, e.data);
             continue;
         }
 
@@ -538,11 +628,6 @@ static void parse_screenplay(Parser* parser)
         da_push_back(parser->elements, e);
         parser->prev_line_empty = 0;
     }
-
-    da_foreach(Elem, elem, parser->elements)
-    {
-        printf("%s -> %s\n", elem_type(*elem), elem->data);
-    }
 }
 
 void parser_parse(Parser* parser)
@@ -553,7 +638,7 @@ void parser_parse(Parser* parser)
     parse_screenplay(parser);
 }
 
-char* elem_type(Elem e)
+char* elem_type_as_string(Elem e)
 {
     switch (e.type)
     {
