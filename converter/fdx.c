@@ -40,6 +40,37 @@ static const char* get_elem_fmt_alignment(Elem e)
     }
 }
 
+void append_escaped(String* string, String other)
+{
+    int size = string_length(other);
+    int last_idx = 0;
+    for (int i = 0; i < size; i++)
+    {
+        switch (other[i])
+        {
+            #define ESCAPE_CHAR(ch, escaped) \
+            case ch:\
+            {\
+                other[i] = '\0';\
+                string_append(string, other + last_idx);\
+                string_append(string, escaped);\
+                other[i] = ch;\
+                last_idx = i + 1;\
+            } break
+
+            ESCAPE_CHAR('\"', "&quot;");
+            ESCAPE_CHAR('\'', "&apos;");
+            ESCAPE_CHAR('<', "&lt;");
+            ESCAPE_CHAR('>', "&gt;");
+            ESCAPE_CHAR('&', "&amp;");
+
+            #undef ESCAPE_CHAR
+        }
+    }
+
+    string_append(string, other + last_idx);
+}
+
 void generate_fdx(Parser* parser)
 {
     String screenplay_content = NULL;
@@ -53,7 +84,7 @@ void generate_fdx(Parser* parser)
         sprintf(buffer, elem_fmt_start, get_elem_fmt_type(*elem), get_elem_fmt_alignment(*elem));
 
         string_append(&screenplay_content, buffer);
-        string_append(&screenplay_content, elem->data);
+        append_escaped(&screenplay_content, elem->data);
         string_append(&screenplay_content, elem_fmt_end);
     }
 
@@ -66,7 +97,7 @@ void generate_fdx(Parser* parser)
         da_foreach(String, s, parser->prop)\
         {\
             string_append(&str, "      <"prop_name">");\
-            string_append(&str, *s);\
+            append_escaped(&str, *s);\
             string_append(&str, "</"prop_name">\n");\
         }\
         string_append(&str, "    </"section_name">\n");\
