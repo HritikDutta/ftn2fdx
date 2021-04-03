@@ -25,6 +25,17 @@ Parser parser_make(String content)
     return p;
 }
 
+static void free_string_array(DArray(String)* arr)
+{
+    da_foreach(String, str, (*arr))
+    {
+        if (*str)
+            string_free(str);
+    }
+
+    da_free((*arr));
+}
+
 void parser_free(Parser* parser)
 {
     if (parser->content)
@@ -50,6 +61,12 @@ void parser_free(Parser* parser)
     }
 
     da_free(parser->elements);
+
+    free_string_array(&parser->characters);
+    free_string_array(&parser->scene_intros);
+    free_string_array(&parser->locations);
+    free_string_array(&parser->times_of_day);
+    free_string_array(&parser->transitions);
 }
 
 static int is_ws(char ch)
@@ -192,7 +209,7 @@ static String get_line(Parser* parser)
     DArray(char) buffer = NULL;
     da_make(buffer);
 
-    while (peek(parser, 0) && peek(parser, 0) != '\n')
+    while (peek(parser, 0) && peek(parser, 0) != '\n' && peek(parser, 0) != '\r')
         da_push_back(buffer, consume(parser));
 
     da_push_back(buffer, '\0');
