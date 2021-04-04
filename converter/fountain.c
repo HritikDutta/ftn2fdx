@@ -79,7 +79,7 @@ static int is_ws(char ch)
 
 static char peek(Parser* parser, int offset)
 {
-    if (parser->idx + offset >= string_length(parser->content))
+    if (parser->idx + offset >= string_length(parser->content) + 1)
         return 0;
 
     return parser->content[parser->idx + offset];
@@ -87,7 +87,7 @@ static char peek(Parser* parser, int offset)
 
 static char consume(Parser* parser)
 {
-    if (parser->idx >= string_length(parser->content))
+    if (parser->idx >= string_length(parser->content) + 1)
         return 0;
 
     return parser->content[parser->idx++];
