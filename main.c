@@ -9,7 +9,7 @@
 
 const char ff_help_string[] =
 "Convert .fountain file to .fdx.\n"
-"   usage: ff <path> <args>\n"
+"   usage: %s <path> <args>\n"
 ;
 
 #ifdef DEBUG
@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
 #endif
     if (argc < 2 || string_cmp(argv[1], "help"))
     {
-        printf(ff_help_string);
+        printf(ff_help_string, argv[0]);
         return 0;
     }
 
