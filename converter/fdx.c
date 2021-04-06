@@ -191,6 +191,9 @@ void generate_fdx(Parser* parser, String filepath)
         credit_start_idx = (title_start_idx > 0) ? (title_start_idx + 2) : ((total_lines / 3) + 2);
 
     Dict_Bkt(String) author_bkt = dict_find(parser->title_page_details, "Author");
+    if (author_bkt == dict_end(parser->title_page_details))
+        author_bkt = dict_find(parser->title_page_details, "Authors");
+
     if (author_bkt != dict_end(parser->title_page_details))
     {
         int last_idx = max(title_start_idx, credit_start_idx);
