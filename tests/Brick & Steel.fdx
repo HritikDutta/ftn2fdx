@@ -3,277 +3,285 @@
 
   <Content>
     <Paragraph Type="Scene Heading" Alignment="Left">
-      <Text>EXT. BRICK&apos;S PATIO - DAY</Text>
+      <Text Style="">EXT. BRICK&apos;S PATIO - DAY</Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>A gorgeous day.  The sun is shining.  But BRICK BRADDOCK, retired police detective, is sitting quietly, contemplating -- something.</Text>
+      <Text Style="">A gorgeous day.  The sun is shining.  But BRICK BRADDOCK, retired police detective, is sitting quietly, contemplating -- something.</Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>The SCREEN DOOR slides open and DICK STEEL, his former partner and fellow retiree, emerges with two cold beers.</Text>
+      <Text Style="">The SCREEN DOOR slides open and DICK STEEL, his former partner and fellow retiree, emerges with two cold beers.</Text>
     </Paragraph>
     <Paragraph Type="Character" Alignment="Left">
-      <Text>STEEL</Text>
+      <Text Style="">STEEL</Text>
     </Paragraph>
     <Paragraph Type="Dialogue" Alignment="Left">
-      <Text>Beer&apos;s ready!</Text>
+      <Text Style="">Beer&apos;s ready!</Text>
     </Paragraph>
     <Paragraph Type="Character" Alignment="Left">
-      <Text>BRICK</Text>
+      <Text Style="">BRICK</Text>
     </Paragraph>
     <Paragraph Type="Dialogue" Alignment="Left">
-      <Text>Are they cold?</Text>
+      <Text Style="">Are they cold?</Text>
     </Paragraph>
     <Paragraph Type="Character" Alignment="Left">
-      <Text>STEEL</Text>
+      <Text Style="">STEEL</Text>
     </Paragraph>
     <Paragraph Type="Dialogue" Alignment="Left">
-      <Text>Does a bear crap in the woods?</Text>
+      <Text Style="">Does a bear crap in the woods?</Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>Steel sits.  They laugh at the dumb joke.</Text>
+      <Text Style="">Steel sits.  They laugh at the dumb joke.</Text>
     </Paragraph>
     <Paragraph Type="Character" Alignment="Left">
-      <Text>STEEL</Text>
+      <Text Style="">STEEL</Text>
     </Paragraph>
     <Paragraph Type="Parenthetical" Alignment="Left">
-      <Text>(beer raised)</Text>
+      <Text Style="">(beer raised)</Text>
     </Paragraph>
     <Paragraph Type="Dialogue" Alignment="Left">
-      <Text>To retirement.</Text>
+      <Text Style="">To retirement.</Text>
     </Paragraph>
     <Paragraph Type="Character" Alignment="Left">
-      <Text>BRICK</Text>
+      <Text Style="">BRICK</Text>
     </Paragraph>
     <Paragraph Type="Dialogue" Alignment="Left">
-      <Text>To retirement.</Text>
+      <Text Style="">To retirement.</Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>They drink long and well from the beers.</Text>
+      <Text Style="">They drink long and well from the beers.</Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>And then there&apos;s a long beat.  </Text>
+      <Text Style="">And then there&apos;s a long beat.  </Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>Longer than is funny.  </Text>
+      <Text Style="">Longer than is funny.  </Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>Long enough to be depressing.</Text>
+      <Text Style="">Long enough to be depressing.</Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>The men look at each other.</Text>
+      <Text Style="">The men look at each other.</Text>
     </Paragraph>
     <Paragraph Type="Character" Alignment="Left">
-      <Text>STEEL</Text>
+      <Text Style="">STEEL</Text>
     </Paragraph>
     <Paragraph Type="Dialogue" Alignment="Left">
-      <Text>Screw retirement.</Text>
+      <Text Style="">Screw retirement.</Text>
     </Paragraph>
     <Paragraph Type="Character" Alignment="Left">
-      <Text>BRICK ^</Text>
+      <Text Style="">BRICK ^</Text>
     </Paragraph>
     <Paragraph Type="Dialogue" Alignment="Left">
-      <Text>Screw retirement.</Text>
+      <Text Style="">Screw retirement.</Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>SMASH CUT TO:</Text>
+      <Text Style="">SMASH CUT TO:</Text>
     </Paragraph>
     <Paragraph Type="Scene Heading" Alignment="Left">
-      <Text>INT. TRAILER HOME - DAY</Text>
+      <Text Style="">INT. TRAILER HOME - DAY</Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>This is the home of THE BOY BAND, AKA DAN and JACK.  They too are drinking beer, and counting the take from their last smash-and-grab.  Money, drugs, and ridiculous props are strewn about the table.</Text>
+      <Text Style="">This is the home of THE BOY BAND, AKA DAN and JACK.  They too are drinking beer, and counting the take from their last smash-and-grab.  Money, drugs, and ridiculous props are strewn about the table.</Text>
     </Paragraph>
     <Paragraph Type="Character" Alignment="Left">
-      <Text>JACK</Text>
+      <Text Style="">JACK</Text>
     </Paragraph>
     <Paragraph Type="Parenthetical" Alignment="Left">
-      <Text>(in Vietnamese, subtitled)</Text>
+      <Text Style="">(in Vietnamese, subtitled)</Text>
     </Paragraph>
     <Paragraph Type="Dialogue" Alignment="Left">
-      <Text>*Did you know Brick and Steel are retired?*</Text>
+      <Text Style="Italic">Did you know Brick and Steel are retired?</Text>
+      <Text Style=""></Text>
     </Paragraph>
     <Paragraph Type="Character" Alignment="Left">
-      <Text>DAN</Text>
+      <Text Style="">DAN</Text>
     </Paragraph>
     <Paragraph Type="Dialogue" Alignment="Left">
-      <Text>Then let&apos;s retire them.</Text>
+      <Text Style="">Then let&apos;s retire them.</Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>_Permanently_.</Text>
+      <Text Style="Underline">Permanently</Text>
+      <Text Style="">.</Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>Jack begins to argue vociferously in Vietnamese (?), But mercifully we...</Text>
+      <Text Style="">Jack begins to argue vociferously in Vietnamese (?), But mercifully we...</Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>CUT TO:</Text>
+      <Text Style="">CUT TO:</Text>
     </Paragraph>
     <Paragraph Type="Scene Heading" Alignment="Left">
-      <Text>EXT. BRICK&apos;S POOL - DAY</Text>
+      <Text Style="">EXT. BRICK&apos;S POOL - DAY</Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>Steel, in the middle of a heated phone call:</Text>
+      <Text Style="">Steel, in the middle of a heated phone call:</Text>
     </Paragraph>
     <Paragraph Type="Character" Alignment="Left">
-      <Text>STEEL</Text>
+      <Text Style="">STEEL</Text>
     </Paragraph>
     <Paragraph Type="Dialogue" Alignment="Left">
-      <Text>They&apos;re coming out of the woodwork!</Text>
+      <Text Style="">They&apos;re coming out of the woodwork!</Text>
     </Paragraph>
     <Paragraph Type="Parenthetical" Alignment="Left">
-      <Text>(pause)</Text>
+      <Text Style="">(pause)</Text>
     </Paragraph>
     <Paragraph Type="Dialogue" Alignment="Left">
-      <Text>No, everybody we&apos;ve put away!</Text>
+      <Text Style="">No, everybody we&apos;ve put away!</Text>
     </Paragraph>
     <Paragraph Type="Parenthetical" Alignment="Left">
-      <Text>(pause)</Text>
+      <Text Style="">(pause)</Text>
     </Paragraph>
     <Paragraph Type="Dialogue" Alignment="Left">
-      <Text>Point Blank Sniper?</Text>
+      <Text Style="">Point Blank Sniper?</Text>
     </Paragraph>
     <Paragraph Type="Scene Heading" Alignment="Left">
-      <Text>SNIPER SCOPE POV</Text>
+      <Text Style="">SNIPER SCOPE POV</Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>From what seems like only INCHES AWAY.  _Steel's face FILLS the *Leupold Mark 4* scope_.</Text>
+      <Text Style="">From what seems like only INCHES AWAY.  </Text>
+      <Text Style="Underline">Steel&apos;s face FILLS the </Text>
+      <Text Style="Italic+Underline">Leupold Mark 4</Text>
+      <Text Style="Underline"> scope</Text>
+      <Text Style="">.</Text>
     </Paragraph>
     <Paragraph Type="Character" Alignment="Left">
-      <Text>STEEL</Text>
+      <Text Style="">STEEL</Text>
     </Paragraph>
     <Paragraph Type="Dialogue" Alignment="Left">
-      <Text>The man&apos;s a myth!</Text>
+      <Text Style="">The man&apos;s a myth!</Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>Steel turns and looks straight into the cross-hairs.</Text>
+      <Text Style="">Steel turns and looks straight into the cross-hairs.</Text>
     </Paragraph>
     <Paragraph Type="Character" Alignment="Left">
-      <Text>STEEL</Text>
+      <Text Style="">STEEL</Text>
     </Paragraph>
     <Paragraph Type="Parenthetical" Alignment="Left">
-      <Text>(oh crap)</Text>
+      <Text Style="">(oh crap)</Text>
     </Paragraph>
     <Paragraph Type="Dialogue" Alignment="Left">
-      <Text>Hello...</Text>
+      <Text Style="">Hello...</Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>CUT TO:</Text>
+      <Text Style="">CUT TO:</Text>
     </Paragraph>
     <Paragraph Type="Scene Heading" Alignment="Left">
-      <Text>OPENING TITLES</Text>
+      <Text Style="">OPENING TITLES</Text>
     </Paragraph>
     <Paragraph Type="General" Alignment="Center">
-      <Text>BRICK BRADDOCK </Text>
+      <Text Style="Italic">BRICK BRADDOCK </Text>
     </Paragraph>
     <Paragraph Type="General" Alignment="Center">
-      <Text>&amp; DICK STEEL IN </Text>
+      <Text Style="Italic">&amp; DICK STEEL IN</Text>
+      <Text Style=""> </Text>
     </Paragraph>
     <Paragraph Type="General" Alignment="Center">
-      <Text>BRICK &amp; STEEL </Text>
+      <Text Style="Bold">BRICK &amp; STEEL </Text>
     </Paragraph>
     <Paragraph Type="General" Alignment="Center">
-      <Text>FULL RETIRED </Text>
+      <Text Style="Bold">FULL RETIRED</Text>
+      <Text Style=""> </Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>SMASH CUT TO:</Text>
+      <Text Style="">SMASH CUT TO:</Text>
     </Paragraph>
     <Paragraph Type="Scene Heading" Alignment="Left">
-      <Text>EXT. WOODEN SHACK - DAY</Text>
+      <Text Style="">EXT. WOODEN SHACK - DAY</Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>COGNITO, the criminal mastermind, is SLAMMED against the wall.</Text>
+      <Text Style="">COGNITO, the criminal mastermind, is SLAMMED against the wall.</Text>
     </Paragraph>
     <Paragraph Type="Character" Alignment="Left">
-      <Text>COGNITO</Text>
+      <Text Style="">COGNITO</Text>
     </Paragraph>
     <Paragraph Type="Dialogue" Alignment="Left">
-      <Text>Woah woah woah, Brick and Steel!</Text>
+      <Text Style="">Woah woah woah, Brick and Steel!</Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>Sure enough, it&apos;s Brick and Steel, roughing up their favorite usual suspect.</Text>
+      <Text Style="">Sure enough, it&apos;s Brick and Steel, roughing up their favorite usual suspect.</Text>
     </Paragraph>
     <Paragraph Type="Character" Alignment="Left">
-      <Text>COGNITO</Text>
+      <Text Style="">COGNITO</Text>
     </Paragraph>
     <Paragraph Type="Dialogue" Alignment="Left">
-      <Text>What is it you want with me, DICK?</Text>
+      <Text Style="">What is it you want with me, DICK?</Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>Steel SMACKS him.</Text>
+      <Text Style="">Steel SMACKS him.</Text>
     </Paragraph>
     <Paragraph Type="Character" Alignment="Left">
-      <Text>STEEL</Text>
+      <Text Style="">STEEL</Text>
     </Paragraph>
     <Paragraph Type="Dialogue" Alignment="Left">
-      <Text>Who&apos;s coming after us?</Text>
+      <Text Style="">Who&apos;s coming after us?</Text>
     </Paragraph>
     <Paragraph Type="Character" Alignment="Left">
-      <Text>COGNITO</Text>
+      <Text Style="">COGNITO</Text>
     </Paragraph>
     <Paragraph Type="Dialogue" Alignment="Left">
-      <Text>Everyone&apos;s coming after you mate!  Scorpio, The Boy Band, Sparrow, Point Blank Sniper...</Text>
+      <Text Style="">Everyone&apos;s coming after you mate!  Scorpio, The Boy Band, Sparrow, Point Blank Sniper...</Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>As he rattles off the long list, Brick and Steel share a look.  This is going to be BAD.</Text>
+      <Text Style="">As he rattles off the long list, Brick and Steel share a look.  This is going to be BAD.</Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>CUT TO:</Text>
+      <Text Style="">CUT TO:</Text>
     </Paragraph>
     <Paragraph Type="Scene Heading" Alignment="Left">
-      <Text>INT. GARAGE - DAY</Text>
+      <Text Style="">INT. GARAGE - DAY</Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>BRICK and STEEL get into Mom&apos;s PORSCHE, Steel at the wheel.  They pause for a beat, the gravity of the situation catching up with them.</Text>
+      <Text Style="">BRICK and STEEL get into Mom&apos;s PORSCHE, Steel at the wheel.  They pause for a beat, the gravity of the situation catching up with them.</Text>
     </Paragraph>
     <Paragraph Type="Character" Alignment="Left">
-      <Text>BRICK</Text>
+      <Text Style="">BRICK</Text>
     </Paragraph>
     <Paragraph Type="Dialogue" Alignment="Left">
-      <Text>This is everybody we&apos;ve ever put away.</Text>
+      <Text Style="">This is everybody we&apos;ve ever put away.</Text>
     </Paragraph>
     <Paragraph Type="Character" Alignment="Left">
-      <Text>STEEL</Text>
+      <Text Style="">STEEL</Text>
     </Paragraph>
     <Paragraph Type="Parenthetical" Alignment="Left">
-      <Text>(starting the engine)</Text>
+      <Text Style="">(starting the engine)</Text>
     </Paragraph>
     <Paragraph Type="Dialogue" Alignment="Left">
-      <Text>So much for retirement!</Text>
+      <Text Style="">So much for retirement!</Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>They speed off.  To destiny!</Text>
+      <Text Style="">They speed off.  To destiny!</Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>CUT TO:</Text>
+      <Text Style="">CUT TO:</Text>
     </Paragraph>
     <Paragraph Type="Scene Heading" Alignment="Left">
-      <Text>EXT. PALATIAL MANSION - DAY</Text>
+      <Text Style="">EXT. PALATIAL MANSION - DAY</Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>An EXTREMELY HANDSOME MAN drinks a beer.  Shirtless, unfortunately.</Text>
+      <Text Style="">An EXTREMELY HANDSOME MAN drinks a beer.  Shirtless, unfortunately.</Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>His minion approaches offscreen:</Text>
+      <Text Style="">His minion approaches offscreen:</Text>
     </Paragraph>
     <Paragraph Type="Character" Alignment="Left">
-      <Text>MINION</Text>
+      <Text Style="">MINION</Text>
     </Paragraph>
     <Paragraph Type="Dialogue" Alignment="Left">
-      <Text>We found Brick and Steel!</Text>
+      <Text Style="">We found Brick and Steel!</Text>
     </Paragraph>
     <Paragraph Type="Character" Alignment="Left">
-      <Text>HANDSOME MAN</Text>
+      <Text Style="">HANDSOME MAN</Text>
     </Paragraph>
     <Paragraph Type="Dialogue" Alignment="Left">
-      <Text>I want them dead.  DEAD!</Text>
+      <Text Style="">I want them dead.  DEAD!</Text>
     </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
-      <Text>Beer flies.</Text>
+      <Text Style="">Beer flies.</Text>
     </Paragraph>
     <Paragraph Type="Transition" Alignment="Right">
-      <Text>BURN TO PINK.</Text>
+      <Text Style="">BURN TO PINK.</Text>
     </Paragraph>
-    <Paragraph Type="Transition" Alignment="Right">
-      <Text>THE END </Text>
+    <Paragraph Type="General" Alignment="Center">
+      <Text Style="">THE END </Text>
     </Paragraph>
   </Content>
 
@@ -403,25 +411,22 @@
         <Text />
       </Paragraph>
       <Paragraph Alignment="Center">
-        <Text>BRICK &amp; STEEL</Text>
+      <Text Style="">BRICK &amp; STEEL</Text>
       </Paragraph>
       <Paragraph Alignment="Center">
-        <Text>FULL RETIRED</Text>
+      <Text Style="">FULL RETIRED</Text>
       </Paragraph>
       <Paragraph>
         <Text />
       </Paragraph>
       <Paragraph Alignment="Center">
-        <Text>Stu Maschwitz</Text>
+      <Text Style="">Written by</Text>
       </Paragraph>
       <Paragraph>
         <Text />
       </Paragraph>
-      <Paragraph>
-        <Text />
-      </Paragraph>
-      <Paragraph>
-        <Text />
+      <Paragraph Alignment="Center">
+      <Text Style="">Stu Maschwitz</Text>
       </Paragraph>
       <Paragraph>
         <Text />
@@ -511,13 +516,13 @@
         <Text />
       </Paragraph>
       <Paragraph Alignment="Left">
-        <Text>Next Level Productions</Text>
+      <Text Style="">Next Level Productions</Text>
       </Paragraph>
       <Paragraph Alignment="Left">
-        <Text>1588 Mission Dr.</Text>
+      <Text Style="">1588 Mission Dr.</Text>
       </Paragraph>
       <Paragraph Alignment="Left">
-        <Text>Solvang, CA 93463</Text>
+      <Text Style="">Solvang, CA 93463</Text>
       </Paragraph>
     </Content>
   </TitlePage>
