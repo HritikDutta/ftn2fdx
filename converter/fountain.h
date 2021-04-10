@@ -9,6 +9,7 @@
 //        Maybe make it if it's in the same line too?
 typedef enum _Elem_Type
 {
+    ELEM_TP_DETAIL,
     ELEM_SCENE_HEADING,
     ELEM_ACTION,
     ELEM_CHARACTER,
@@ -20,17 +21,34 @@ typedef enum _Elem_Type
     ELEM_PAGE_BREAK,
 } Elem_Type;
 
+typedef enum {
+    EMPHASIS_NONE       = 0x00,
+    EMPHASIS_ITALICIZED = 0x01,
+    EMPHASIS_BOLD       = 0x02,
+    EMPHASIS_UNDERLINED = 0x04,
+} Emphasis_Type;
+
+typedef struct _Text
+{
+    int emphasis_flags;
+    String text;
+} Text;
+
 typedef struct _Elem
 {
     Elem_Type type;
-    String data;
+    DArray(Text) texts;
 } Elem;
+
+Elem elem_make(Elem_Type type);
+void elem_process(Elem* elem, String line, int* emphasis_flags);
+void elem_free(Elem* elem);
 
 typedef struct _Parser
 {
     String content;
     int idx;
-    Dict(String) title_page_details;
+    Dict(Elem)   title_page_details;
     DArray(Elem) elements;
 
     DArray(String) characters;
@@ -42,6 +60,7 @@ typedef struct _Parser
     int prev_line_empty;
     int next_line_empty;
     int line_all_caps;
+    int emphasis_flags;
 } Parser;
 
 Parser parser_make(String content);

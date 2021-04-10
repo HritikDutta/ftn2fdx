@@ -1,17 +1,31 @@
 #pragma once
 
-char elem_fmt_start[] =
-"    <Paragraph Type=\"%s\" Alignment=\"%s\">\n"
-"      <Text>";
+char* emphasis_styles[] = {
+    "",
+    "Italic",
+    "Bold",
+    "Bold+Italic",
+    "Underline",
+    "Italic+Underline",
+    "Bold+Underline",
+    "Bold+Italic+Underline",
+};
 
-char elem_fmt_end[] ="</Text>\n"
+char text_elem_fmt_start[] =
+"      <Text Style=\"%s\">";
+
+char text_elem_fmt_end[] = "</Text>\n";
+
+char elem_fmt_start[] =
+"    <Paragraph Type=\"%s\" Alignment=\"%s\">\n";
+
+char elem_fmt_end[] =
 "    </Paragraph>\n";
 
 char title_page_elem_fmt_start[] =
-"      <Paragraph Alignment=\"%s\">\n"
-"        <Text>";
+"      <Paragraph Alignment=\"%s\">\n";
 
-char title_page_elem_fmt_end[] ="</Text>\n"
+char title_page_elem_fmt_end[] =
 "      </Paragraph>\n";
 
 char title_page_empty_elem[] =

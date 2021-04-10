@@ -9,6 +9,86 @@
 #define DICTIONARY_IMPL
 #include "containers/dictionary.h"
 
+Elem elem_make(Elem_Type type)
+{
+    Elem e = { type, 0 };
+
+    if (type != ELEM_PAGE_BREAK && type != ELEM_BONEYARD)
+        da_make(e.texts);
+    
+    return e;
+}
+
+void elem_process(Elem* elem, String line, int* emphasis_flags)
+{
+    int start_idx = 0;
+    for (int i = 0; line[i]; i++)
+    {
+        if (line[i] == '_')
+        {
+            if (i > start_idx && line[i - 1] != '*' && line[i - 1] != '_')
+            {
+                Text t = { *emphasis_flags, NULL };
+            
+                line[i] = '\0';
+                t.text = string_make(line + start_idx);
+                line[i] = '_';
+
+                da_push_back(elem->texts, t);
+            }
+
+            start_idx = i + 1;
+            *emphasis_flags ^= EMPHASIS_UNDERLINED;
+            continue;
+        }
+
+        if (line[i] == '*')
+        {
+            if (i > start_idx && line[i - 1] != '*' && line[i - 1] != '_')
+            {
+                Text t = { *emphasis_flags, NULL };
+            
+                line[i] = '\0';
+                t.text = string_make(line + start_idx);
+                line[i] = '*';
+
+                da_push_back(elem->texts, t);
+            }
+
+            if (line[i + 1] == '*')
+            {
+                start_idx = i + 2;
+                *emphasis_flags ^= EMPHASIS_BOLD;
+                i++;
+            }
+            else
+            {
+                start_idx = i + 1;
+                *emphasis_flags ^= EMPHASIS_ITALICIZED;
+            }
+
+            continue;
+        }
+    }
+
+    
+    // Add the remaing line
+    Text t = { *emphasis_flags, NULL };
+    t.text = string_make(line + start_idx);
+    da_push_back(elem->texts, t);
+}
+
+void elem_free(Elem* elem)
+{
+    da_foreach(Text, t, elem->texts)
+    {
+        if (t->text)
+            string_free(&t->text);
+    }
+
+    da_free(elem->texts);
+}
+
 Parser parser_make(String content)
 {
     Parser p = { 0 };
@@ -55,10 +135,7 @@ void parser_free(Parser* parser)
     dict_free(parser->title_page_details);
 
     da_foreach(Elem, elem, parser->elements)
-    {
-        if (elem->data)
-            string_free(&elem->data);
-    }
+        elem_free(elem);
 
     da_free(parser->elements);
 
@@ -251,8 +328,10 @@ static void parse_title_page(Parser* parser)
 
                 consume_ws(parser);
                 String line = get_line(parser);
-                string_append(&value, line);
                 consume_line(parser);
+
+                string_append(&value, line);
+                string_free(&line);
             }
         }
         else
@@ -262,7 +341,9 @@ static void parse_title_page(Parser* parser)
             consume_line(parser);
         }
 
-        dict_put(parser->title_page_details, key, value);
+        Elem e = elem_make(ELEM_TP_DETAIL);
+        elem_process(&e, value, &parser->emphasis_flags);
+        dict_put(parser->title_page_details, key, e);
     }
 }
 
@@ -540,8 +621,9 @@ static void parse_screenplay(Parser* parser)
 
         if (line_starts_with(parser, "==="))
         {
-            Elem e = { ELEM_PAGE_BREAK,  0 };
+            Elem e = elem_make(ELEM_PAGE_BREAK);
             da_push_back(parser->elements, e);
+            
             consume_line(parser);
             parser->prev_line_empty = 1;
             continue;
@@ -549,7 +631,7 @@ static void parse_screenplay(Parser* parser)
 
         if (line_starts_with(parser, "/*"))
         {
-            Elem e = { ELEM_BONEYARD, 0 };
+            Elem e = elem_make(ELEM_BONEYARD);
             da_push_back(parser->elements, e);
 
             while (peek(parser, 0))
@@ -568,84 +650,104 @@ static void parse_screenplay(Parser* parser)
 
         if (is_centered_text(parser))
         {
-            Elem e;
-            e.type = ELEM_CENTERED_TEXT;
             consume(parser);        // Consume the first '>'
             consume_ws(parser);
-            e.data = get_till_char(parser, '<');    // @Todo: Also trim off whitespaces at the end
+            String str = get_till_char(parser, '<');    // @Todo: Also trim off whitespaces at the end
             consume_line(parser);
+
+            Elem e = elem_make(ELEM_CENTERED_TEXT);
             da_push_back(parser->elements, e);
+            elem_process(&e, str, &parser->emphasis_flags);
+
+            string_free(&str);
             parser->prev_line_empty = 0;
             continue;
         }
 
         if (is_parenthetical(parser))
         {
-            Elem e;
-            e.type = ELEM_PARENTHETICAL;
-            e.data = get_line(parser);
+            String str = get_line(parser);
+
+            Elem e = elem_make(ELEM_PARENTHETICAL);
+            elem_process(&e, str, &parser->emphasis_flags);
             da_push_back(parser->elements, e);
+
+            string_free(&str);
             parser->prev_line_empty = 0;
             continue;
         }
 
         if (is_dialogue(parser))
         {
-            Elem e;
-            e.type = ELEM_DIALOGUE;
-            e.data = get_line(parser);
+            String str = get_line(parser);
+
+            Elem e = elem_make(ELEM_DIALOGUE);
+            elem_process(&e, str, &parser->emphasis_flags);
             da_push_back(parser->elements, e);
+            
+            string_free(&str);
             parser->prev_line_empty = 0;
             continue;
         }
 
         if (is_transition(parser))
         {
-            Elem e;
-            e.type = ELEM_TRANSITION;
-            e.data = get_line(parser);
-            da_push_back(parser->elements, e);
+            String str = get_line(parser);
             consume_line(parser);   // Consume the empty line after this
-            parser->prev_line_empty = 0;
+
+            Elem e = elem_make(ELEM_TRANSITION);
+            elem_process(&e, str, &parser->emphasis_flags);
+            da_push_back(parser->elements, e);
 
             String transition = NULL;
-            string_copy(&transition, e.data);
-            push_unique_string_or_free(&parser->transitions, &transition);
+            push_unique_string_or_free(&parser->transitions, &str);
+
+            parser->prev_line_empty = 0;
             continue;
         }
 
         if (is_scene_heading(parser))
         {
-            Elem e;
-            e.type = ELEM_SCENE_HEADING;
-            e.data = get_line(parser);
-            da_push_back(parser->elements, e);
-            parser->prev_line_empty = 0;
+            String str = get_line(parser);
             consume_line(parser);   // Consume the empty line after this
+
+            Elem e = elem_make(ELEM_SCENE_HEADING);
+            elem_process(&e, str, &parser->emphasis_flags);
+            da_push_back(parser->elements, e);
             
-            push_scene_heading_details(parser, e.data);
+            push_scene_heading_details(parser, str);
+            string_free(&str);
+            parser->prev_line_empty = 0;
             continue;
         }
 
         if (is_character(parser))
         {
-            Elem e;
-            e.type = ELEM_CHARACTER;
-            e.data = get_line(parser);
+            String str = get_line(parser);
+
+            Elem e = elem_make(ELEM_CHARACTER);
+            elem_process(&e, str, &parser->emphasis_flags);
             da_push_back(parser->elements, e);
-            parser->prev_line_empty = 0;
          
-            push_character_name(parser, e.data);
+            push_character_name(parser, str);
+
+            string_free(&str);
+            parser->prev_line_empty = 0;
             continue;
         }
 
     action: // Use a different way where it collects everything between elements
         
-        Elem e;
-        e.type = ELEM_ACTION;
-        e.data = get_line(parser);
-        da_push_back(parser->elements, e);
-        parser->prev_line_empty = 0;
+        {
+            String str = get_line(parser);
+
+            Elem e = elem_make(ELEM_ACTION);
+            elem_process(&e, str, &parser->emphasis_flags);
+            da_push_back(parser->elements, e);
+
+            string_free(&str);
+            parser->prev_line_empty = 0;
+        }
     }
 }
 
@@ -661,6 +763,7 @@ char* elem_type_as_string(Elem e)
 {
     switch (e.type)
     {
+        case ELEM_TP_DETAIL:     return "TP_DETAIL";
         case ELEM_SCENE_HEADING: return "SCENE_HEADING";
         case ELEM_ACTION:        return "ACTION       ";
         case ELEM_CHARACTER:     return "CHARACTER    ";
