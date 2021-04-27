@@ -489,7 +489,7 @@ static int is_parenthetical(Parser* parser)
     Elem_Type prev_elem_type = parser->elements[last_elem_idx].type;
 
     // If previous element was a character or a parenthetical
-    if (prev_elem_type == ELEM_CHARACTER ||
+    if (prev_elem_type == ELEM_CHARACTER     ||
         prev_elem_type == ELEM_PARENTHETICAL ||
         prev_elem_type == ELEM_DIALOGUE)
     {
@@ -559,9 +559,9 @@ static void push_scene_heading_details(Parser* parser, String line)
         start_idx++;
 
     // There is a scene intro
-    if (line[start_idx] != '.')
+    if (line[start_idx - 1] == '.')
     {
-        String scene_intro = string_make_till_n(line, start_idx + 1);
+        String scene_intro = string_make_till_n(line, start_idx);
         push_unique_string_or_free(&parser->scene_intros, &scene_intro);
     }
     else
