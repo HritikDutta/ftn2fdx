@@ -140,8 +140,14 @@ void generate_fdx(Parser* parser, String filepath)
     da_foreach(Elem, elem, parser->elements)
     {
         // Handle page breaks properly later
-        if (elem->type == ELEM_BONEYARD || elem->type == ELEM_PAGE_BREAK)
+        if (elem->type == ELEM_BONEYARD)
             continue;
+
+        if (elem->type == ELEM_PAGE_BREAK)
+        {
+            string_append(&screenplay_content, page_break_elem);
+            continue;
+        }
 
         char buffer[128];
         sprintf(buffer, elem_fmt_start, get_elem_fmt_type(*elem), get_elem_fmt_alignment(*elem));

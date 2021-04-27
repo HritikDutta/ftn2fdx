@@ -11,6 +11,11 @@ char* emphasis_styles[] = {
     "Bold+Italic+Underline",
 };
 
+char page_break_elem[] =
+"    <Paragraph Type=\"Action\" StartsNewPage=\"Yes\">\n"
+"    <Text />\n"
+"    </Paragraph>\n";
+
 char text_elem_fmt_start[] =
 "      <Text Style=\"%s\">";
 
