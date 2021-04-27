@@ -548,17 +548,15 @@
       <Extension>(SUBTITLE)</Extension>
     </Extensions>
     <SceneIntros>
-      <SceneIntro>EXT. </SceneIntro>
-      <SceneIntro>INT. </SceneIntro>
-      <SceneIntro>SNIPER </SceneIntro>
-      <SceneIntro>OPENING </SceneIntro>
+      <SceneIntro>EXT.</SceneIntro>
+      <SceneIntro>INT.</SceneIntro>
     </SceneIntros>
     <Locations>
       <Location>BRICK&apos;S PATIO</Location>
       <Location>TRAILER HOME</Location>
       <Location>BRICK&apos;S POOL</Location>
-      <Location>SCOPE POV</Location>
-      <Location>TITLES</Location>
+      <Location>SNIPER SCOPE POV</Location>
+      <Location>OPENING TITLES</Location>
       <Location>WOODEN SHACK</Location>
       <Location>GARAGE</Location>
       <Location>PALATIAL MANSION</Location>

@@ -5,6 +5,9 @@
     <Paragraph Type="Action" Alignment="Left">
       <Text Style="">This is a Southern story, full of lies and fabrications, but truer for their inclusion.</Text>
     </Paragraph>
+    <Paragraph Type="Action" StartsNewPage="Yes">
+    <Text />
+    </Paragraph>
     <Paragraph Type="Action" Alignment="Left">
       <Text Style="Bold">FADE IN:</Text>
       <Text Style=""></Text>
@@ -8638,9 +8641,9 @@
       <Extension>(SUBTITLE)</Extension>
     </Extensions>
     <SceneIntros>
-      <SceneIntro>INT. </SceneIntro>
-      <SceneIntro>EXT. </SceneIntro>
-      <SceneIntro>INT./EXT. </SceneIntro>
+      <SceneIntro>INT.</SceneIntro>
+      <SceneIntro>EXT.</SceneIntro>
+      <SceneIntro>INT./EXT.</SceneIntro>
     </SceneIntros>
     <Locations>
       <Location>WILL&apos;S BEDROOM</Location>
