@@ -9,7 +9,7 @@
 
 const char ff_help_string[] =
 "Convert .fountain file to .fdx.\n"
-"   usage: %s <path> <args>\n"
+"   usage: %s <in-path> <out-path>\n"
 ;
 
 #ifdef DEBUG
