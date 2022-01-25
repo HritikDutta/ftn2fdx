@@ -21,7 +21,8 @@ typedef enum _Elem_Type
     ELEM_PAGE_BREAK,
 } Elem_Type;
 
-typedef enum {
+typedef enum _Emphasis_Type
+{
     EMPHASIS_NONE       = 0x00,
     EMPHASIS_ITALICIZED = 0x01,
     EMPHASIS_BOLD       = 0x02,
