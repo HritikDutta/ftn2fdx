@@ -286,8 +286,16 @@ static String get_line(Parser* parser)
     DArray(char) buffer = NULL;
     da_make(buffer);
 
-    while (peek(parser, 0) && peek(parser, 0) != '\n' && peek(parser, 0) != '\r')
+    while (peek(parser, 0) && peek(parser, 0) != '\n')
+    {
+        if (peek(parser, 0) == '\r')
+        {
+            consume(parser);
+            continue;
+        }
+
         da_push_back(buffer, consume(parser));
+    }
 
     da_push_back(buffer, '\0');
     consume(parser);
@@ -693,7 +701,9 @@ static void parse_screenplay(Parser* parser)
         if (is_transition(parser))
         {
             String str = get_line(parser);
-            consume_line(parser);   // Consume the empty line after this
+            
+            if (line_is_empty(parser))
+                consume_line(parser);   // Consume the empty line after this
 
             Elem e = elem_make(ELEM_TRANSITION);
             elem_process(&e, str, &parser->emphasis_flags);
@@ -702,14 +712,16 @@ static void parse_screenplay(Parser* parser)
             String transition = NULL;
             push_unique_string_or_free(&parser->transitions, &str);
 
-            parser->prev_line_empty = 0;
+            parser->prev_line_empty = 1;
             continue;
         }
 
         if (is_scene_heading(parser))
         {
             String str = get_line(parser);
-            consume_line(parser);   // Consume the empty line after this
+
+            if (line_is_empty(parser))
+                consume_line(parser);   // Consume the empty line after this
 
             Elem e = elem_make(ELEM_SCENE_HEADING);
             elem_process(&e, str, &parser->emphasis_flags);
@@ -717,7 +729,7 @@ static void parse_screenplay(Parser* parser)
             
             push_scene_heading_details(parser, str);
             string_free(&str);
-            parser->prev_line_empty = 0;
+            parser->prev_line_empty = 1;
             continue;
         }
 
