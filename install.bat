@@ -4,7 +4,7 @@ set outdir=C:\hd-tools\
 
 if not exist %outdir% md %outdir%
 
-cl /c converter/*.c /I ./
-cl main.c /Fe:%outdir%ff *.obj
+cl /O2 /c converter/*.c /I ./
+cl /O2 main.c /Fe:%outdir%ff *.obj /GL
 
 del *.obj
