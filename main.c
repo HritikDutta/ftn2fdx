@@ -32,7 +32,7 @@ int main(int argc, char* argv[])
 
     if (!is_fountain(argv[1]))
     {
-        printf("What file is this? %s\n", argv[1]);
+        printf("What file is this? \"%s\"\n", argv[1]);
         return 1;
     }
 
