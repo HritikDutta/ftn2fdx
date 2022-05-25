@@ -323,11 +323,10 @@ static String get_multiline(Parser* parser)
 
         if (ch == '\n')
         {
-            consume(parser);
-
             if (encountered_newline)
                 break;
-
+                
+            consume(parser);
             encountered_newline = 1;
             continue;
         }
