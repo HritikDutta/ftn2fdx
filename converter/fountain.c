@@ -328,25 +328,24 @@ static String get_multiline(Parser* parser)
                 
             consume(parser);
             encountered_newline = 1;
+            added_ws = 0;
             continue;
         }
 
         if (encountered_newline && ch == ' ' || ch == '\t')
         {
             consume(parser);
-
-            if (!added_ws)
-            {
-                da_push_back(buffer, ' ');
-                added_ws = 1;
-            }
-
             continue;
+        }
+
+        if (encountered_newline && !added_ws)
+        {
+            da_push_back(buffer, ' ');
+            added_ws = 1;
         }
 
         da_push_back(buffer, consume(parser));
         encountered_newline = 0;
-        added_ws = 0;
     }
     
     da_push_back(buffer, '\0');
@@ -797,7 +796,7 @@ static void parse_screenplay(Parser* parser)
     action: // Use a different way where it collects everything between elements
         
         {
-            String str = get_line(parser);
+            String str = get_multiline(parser);
 
             Elem e = elem_make(ELEM_ACTION);
             elem_process(&e, str, &parser->emphasis_flags);
