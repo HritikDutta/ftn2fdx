@@ -72,7 +72,7 @@ void elem_process(Elem* elem, String line, int* emphasis_flags)
     }
 
     
-    // Add the remaing line
+    // Add the remaining text
     Text t = { *emphasis_flags, NULL };
     t.text = string_make(line + start_idx);
     da_push_back(elem->texts, t);
@@ -305,6 +305,58 @@ static String get_line(Parser* parser)
     return line;
 }
 
+static String get_multiline(Parser* parser)
+{
+    DArray(char) buffer = NULL;
+    da_make(buffer);
+
+    int encountered_newline = 0;
+    int added_ws = 0;
+    char ch;
+    while (ch = peek(parser, 0))
+    {
+        if (ch == '\r')
+        {
+            consume(parser);
+            continue;
+        }
+
+        if (ch == '\n')
+        {
+            consume(parser);
+
+            if (encountered_newline)
+                break;
+
+            encountered_newline = 1;
+            continue;
+        }
+
+        if (encountered_newline && ch == ' ' || ch == '\t')
+        {
+            consume(parser);
+
+            if (!added_ws)
+            {
+                da_push_back(buffer, ' ');
+                added_ws = 1;
+            }
+
+            continue;
+        }
+
+        da_push_back(buffer, consume(parser));
+        encountered_newline = 0;
+        added_ws = 0;
+    }
+    
+    da_push_back(buffer, '\0');
+
+    String line = string_make(buffer);
+    da_free(buffer);
+    return line;
+}
+
 // This won't check if the delim exists ahead
 static String get_till_char(Parser* parser, char delim)
 {
@@ -476,11 +528,6 @@ static int is_dialogue(Parser* parser)
     // If previous element was a character or a parenthetical
     if (prev_elem_type == ELEM_CHARACTER ||
         prev_elem_type == ELEM_PARENTHETICAL)
-        return 1;
-
-    // If previous element was a dialogue and the previous line wasn't empty
-    if (prev_elem_type == ELEM_DIALOGUE &&
-        !parser->prev_line_empty)
         return 1;
 
     // @Todo: Look for { number spaces } for empty lines
@@ -687,7 +734,7 @@ static void parse_screenplay(Parser* parser)
 
         if (is_dialogue(parser))
         {
-            String str = get_line(parser);
+            String str = get_multiline(parser);
 
             Elem e = elem_make(ELEM_DIALOGUE);
             elem_process(&e, str, &parser->emphasis_flags);
