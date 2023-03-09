@@ -154,6 +154,11 @@ static int is_ws(char ch)
            ch == '\n';
 }
 
+static int is_alphabet(char ch)
+{
+    return (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z');
+}
+
 static char peek(Parser* parser, int offset)
 {
     if (parser->idx + offset >= string_length(parser->content) + 1)
@@ -466,7 +471,7 @@ static int is_scene_heading(Parser* parser)
     if (!parser->prev_line_empty || !parser->line_all_caps || !parser->next_line_empty)
         return 0;
 
-    if (peek(parser, 0) == '.' && peek(parser, 1) != '.')
+    if (peek(parser, 0) == '.' && is_alphabet(peek(parser, 1)))
     {
         consume(parser);
         return 1;
